@@ -4,39 +4,66 @@
 <head>
     <title>Customer List</title>
     <style>
-        table {
-            border-collapse: collapse;
+        #page-title, #create {
+            text-align: center;
         }
-        td {
+        table {
+            margin: auto;
+            border-collapse: collapse;
+            font-size: 18px;
+        }
+        td, th {
             border-style: solid;
             border-width: 2px;
             border-color: blue;
-            padding: 2px 5px;
+            padding: 15px 20px;
+        }
+        th {
+            background-color: #a5a0ff;
+        }
+        tbody tr:nth-child(odd) {
+            background-color: #d7e3ff;
+        }
+        .edit, .delete {
+            text-decoration: none;
+            padding: 5px;
+            color: wheat;
+            border-radius: 5px;
+        }
+        .edit {
+            background-color: green;
+        }
+        .delete {
+            background-color: red;
         }
     </style>
 </head>
 <body>
-    <h1>Customers</h1>
-    <p>
+    <h1 id="page-title">Customers</h1>
+    <p id="create">
         <a href="${pageContext.request.contextPath}/customer?action=create">Create new customer</a>
     </p>
     <table>
-        <tr>
-            <td>Name</td>
-            <td>Email</td>
-            <td>Address</td>
-            <td>Edit</td>
-            <td>Delete</td>
-        </tr>
-        <c:forEach items='${requestScope["customers"]}' var="customer">
+        <thead>
             <tr>
-                <td><a href="/customer?action=view&id=${customer.getId()}">${customer.getName()}</a></td>
-                <td>${customer.getEmail()}</td>
-                <td>${customer.getAddress()}</td>
-                <td><a href="/customer?action=edit&id=${customer.getId()}">edit</a></td>
-                <td><a href="/customer?action=delete&id=${customer.getId()}">delete</a></td>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Address</th>
+                <th>Edit</th>
+                <th>Delete</th>
             </tr>
-        </c:forEach>
+        </thead>
+        <tbody>
+            <c:forEach items='${requestScope["customers"]}' var="customer">
+                <tr>
+                    <td><a href="/customer?action=view&id=${customer.getId()}">${customer.getName()}</a></td>
+                    <td>${customer.getEmail()}</td>
+                    <td>${customer.getAddress()}</td>
+                    <td><a class="edit" href="/customer?action=edit&id=${customer.getId()}">edit</a></td>
+                    <td><a class="delete" href="/customer?action=delete&id=${customer.getId()}">delete</a></td>
+                </tr>
+            </c:forEach>
+        </tbody>
     </table>
 </body>
 </html>

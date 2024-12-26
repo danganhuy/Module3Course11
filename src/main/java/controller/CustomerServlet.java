@@ -89,7 +89,7 @@ public class CustomerServlet extends HttpServlet {
         } else {
             this.customerService.remove(id);
             try {
-                response.sendRedirect("/customers");
+                response.sendRedirect("/customer");
             } catch (IOException e) {
                 e.printStackTrace();
             }
