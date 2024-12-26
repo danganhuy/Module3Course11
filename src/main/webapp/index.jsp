@@ -9,5 +9,6 @@
     </h1>
     <br/>
     <div><a href="customer">Customer view</a></div>
+    <div><a href="product">Product view</a></div>
 </body>
 </html>
